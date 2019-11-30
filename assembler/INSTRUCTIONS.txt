@@ -1,0 +1,19 @@
+NATIVE INSTRUCTIONS: 
+    LDA XXXX:   load A from addr XXXX:                  0001 XXXX
+    LDAI XXXX:  (LDA immediate) load A value 0000XXXX:  0010 XXXX
+    ADD XXXX:   A + mem_at_XXXX:                        0011 XXXX
+    SUB XXXX:   A - mem_at_XXXX:                        0100 XXXX
+    AND XXXX:   A && mem_at_XXXX (bitwise&):            0101 XXXX
+    OR XXXX:    A || mem_at_XXXX (bitwise|):            0110 XXXX
+    NOT:        !A (bitwise!):                          0111 0000
+    INC:        increment A                             1000 0000
+    DEC:        decrement A                             1001 0000
+    
+    STA XXXX:   Store contents of A at addr_XXXX        1100 0000
+    JUMP XXXX:  jump counter to XXXX:                   1101 0000
+    OUT:        from A:                                 1110 0000
+    NOTH:       do nothing:                             1111 0000
+	
+ADDITIONAL INSTRUCTIONS: 
+	COPY XXXX YYYY: copy value_at_XXXX to addr_XXXX: 			LDA XXXX, STA YYYY 
+	MUL XXXX YYYY: 	multiply A * XXXX using at_YYYY as buffer: 	STA YYYY, for(i->XXXX) [ ADD YYYY ] 
