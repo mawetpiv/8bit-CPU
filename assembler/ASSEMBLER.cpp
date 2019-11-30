@@ -3,7 +3,7 @@
 #include <fstream> 
 using namespace std; 
 
-// function to convert decimal to binary 
+// function to convert decimal to binary strings
 string decToBinary(string in) 
 { 
 	string n = in.substr(0,1);
@@ -37,44 +37,37 @@ int main(){
 	string file_in; 
 	string file_out = "prog.bin";
 	string instr = "";
-	string val = ""; int valD = 0;
-	string val2 = ""; int val2D = 0;
+	string val = ""; 
+	string val2 = ""; 
 	string line, line_out;
-	int N = 0; int N2 = 0;
+	int N = 0; 
 	int count = 0;
 	
-	cout << "Prog file: ";
+	cout << "Prog file (w/out ext): ";
 	cin >> file_in; 
 	cout << endl; 
+	file_in += ".as8";
 	
-	ifstream program;
-	ofstream prog_out;
+	ifstream program; // input program file 
+	ofstream prog_out; // output bin file 
 	prog_out.open(file_out);
 	program.open(file_in);
 	if(program.is_open()){
 		while(getline(program, line)){
 			
 			line_out = "";
+			// find instruction 
 			N = line.find(' ');
-			//N2 = line.find(' ');
 			instr = line.substr(0,N);
+			
+			// find address/value 
 			if(N != string::npos){
 				val = line.substr(N+1);
-				//valD = stoi(val);
-				val = decToBinary(val);
+				val = decToBinary(val); // take in decimal addr/val, convert to binary 
 			}
 			cout << "val: " << val << endl; 
-/*
-			N = line.find(' ', N+1);
-			if(N != string::npos){
-				val2 = line.substr(N+1,4);
-				//val2D = stoi(val2);
-				val2 = decToBinary(val2);
-			}
 			
-			//cout << "instr: " << instr << endl;
-			cout << "val2: " << val2 << endl;
-			*/
+			// decode instr
 			if(instr == "LDA") line_out += "0001";
 			else if(instr == "LDAI") line_out += "0010";
 			else if(instr == "ADD") line_out += "0011";
@@ -89,17 +82,19 @@ int main(){
 			else if(instr == "OUT") line_out += "1110";
 			else if(instr == "NOTH") line_out += "1111";
 			
+			// tack on addr/val
 			line_out += val;
 			
+			// endl, write line to out
 			line_out += "\n";
 			cout << line_out;
-			
 			prog_out << line_out;
 			count ++;
 			
 		}
 	}
 	
+	// fill rest of file with all 1s to ensure 16 bytes
 	if(count < 16){
 		for(int i = count; i < 16; i++){
 			prog_out << "11111111\n";

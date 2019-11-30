@@ -13,6 +13,8 @@ NATIVE INSTRUCTIONS:
     JUMP XXXX:  jump counter to XXXX:                   1101 0000
     OUT:        from A:                                 1110 0000
     NOTH:       do nothing:                             1111 0000
+
+//////////////////// Not programmed yet: 
 	
 ADDITIONAL INSTRUCTIONS: 
 	COPY XXXX YYYY: copy value_at_XXXX to addr_XXXX: 			LDA XXXX, STA YYYY 
