@@ -3,8 +3,10 @@ This project is for a simple 8 bit CPU designed in verilog. Included are all the
 
 Contents: 
 
-8bit_cpu (3).zip    current project package \n
+8bit_cpu (3).zip    current project package 
+
 8bit_cpu.xpr        vivado project file
+
 wvfm img/           screenshots of simulation waveforms from testing 
 .srcs/              verilog files (.v) for design and simulation 
 schematics/         pdf schematics for complete design 
